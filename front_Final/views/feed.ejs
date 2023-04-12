@@ -1,0 +1,90 @@
+<%- include('includes/header.ejs')  %>
+
+<body>
+  <% const users = locals.users.success %>
+  <% const posts = locals.posts.success %>
+  <% const myProfil = locals.myProfil.success %>
+
+  <%- include('includes/navbar.ejs')  %>
+  <br>
+  <% if(locals.myProfil.error || locals.posts.error || locals.users.error){ %>
+  <p><%= locals.myProfil.error %> </p>
+  <% } %>
+
+  <% if(locals.message){ %>
+  <p style="color: green;"> <%= locals.message %> </p>
+  <% } %>
+  <div class="container">
+
+    <% if(locals.message2){ %>
+  <p style="color:red;"> <%= locals.message2 %> </p>
+  <% } %>
+  <div class="container">
+
+    <% if(users && posts && myProfil){ %>
+    <div class="col-md-8 ">
+      <div class="card-body">
+        <form id='form-post' action="/newPost" method="post" enctype="multipart/form-data">
+          <input class="form-control m-1" type="text" name="title" placeholder="Title" />
+          <textarea class="form-control m-1" placeholder="texte" name="text" id="editcontent" style="height: 50px"></textarea>
+          <div class="collapse" id="collapseExample">
+            <input class="form-control m-1" type="file" name="picture">
+          </div>
+          <a class="btn btn-primary m-1 test" id="posts" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <i class="fa-regular fa-image-landscape"></i>
+          </a>
+          <input id="posts" type="submit" value="Publier" class="btn btn-primary ">
+        </form>
+      </div>
+    </div>
+    <% posts.reverse().map((post)=>{ %>
+    <% users.map((user)=>{ %>
+    <% if(user.id === post.userId){ %>
+    <div class="col-md-10 ">
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="starcard">
+            <div class="user">
+              <a href="/profil/<%= user.id %> ">
+                <img class="card-img-top" src="../data/uploads/<%= user.avatar  %> " alt="photo de profil" style="width: 50px;height: 50px;border-radius: 100%;">
+              </a> 
+              <div class="title">
+                <h4 class="fulname"><%= user.firstname %> <%= user.lastname %></h4>
+              </div>
+            </div>
+            <div class="edit_delete">
+              <% if(myProfil.id === post.userId){ %>
+              <div class="dropdown">
+                <button class="btn btn-dark " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa-solid fa-ellipsis"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a href="/posts/<%= post.id %> " class="edit"><i class="fa-solid fa-pen-to-square" ></i> Edit post</p></a>
+                  <form action="/delete<%=post.id %>" method="post">
+                    <button type="submit" class="btnsup"><i class="fa-regular fa-trash-can color:red"></i> Supprimer</button>
+                  </form>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div><br>
+          <h5><strong><%= post.title  %> </strong></h5>
+          <p class="card-text"><%= post.text %></p>
+        </div>
+        <% if(post.picture!= null){ %>
+        <img class="card m-3 img-post" src="../data/uploads/<%= post.picture %> " alt="photo de post">
+        <% } %>  
+        <div>
+          <p><i class="fa fa-heart ml-3" style="color: red;" aria-hidden="true"></i> <%= post.likesCount %></p>
+          <a href="/posts/<%= post.id %>" class="linkcomment">voir le post</a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <% } %>
+    <% }) %>
+    <% }) %>
+    <% } %>
+  </div>
+
+  <%- include('includes/footer.ejs')  %>

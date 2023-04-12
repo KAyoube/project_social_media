@@ -1,0 +1,122 @@
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.cardUser {
+    border: 1px solid darkblue;
+}
+
+.card2 {
+    border: 1px solid aqua;
+    border-radius: 10px;
+    width: 450px;
+    height: 115px;
+    margin-bottom: 16px;
+    margin-left: 100px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.starcard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user,
+.edit_delete {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+.fulname {
+    margin-left: 15px;
+}
+
+.btnlike,
+.btndislike {
+    border: none;
+    background: none;
+    color: blue;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.edit {
+    color: black;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.btnsup {
+    border: none;
+    background: none;
+    color: red;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+span {
+    margin-left: 15px;
+}
+
+.likes {
+    display: flex;
+    flex-direction: row;
+}
+
+.modifier {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-text {
+    color: black;
+}
+
+.addcom {
+    display: flex;
+    flex-direction: row;
+}
+
+.img-post {
+    height: 80%;
+    width: 80%;
+    display: flex;
+    align-self: center;
+
+}
+
+#form-post {
+    width: 100%;
+}
+
+.navbar {
+    background-image: url(../img/navbarBG.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navLi {
+    color: white !important;
+    font-size: larger;
+}
+
+.profilUser{
+    margin-top: 100px;
+}
+
+.profilUser img {
+    height: 300px;
+    border-radius: 20px;
+    border: 1px dashed wheat;
+    
+}
+  

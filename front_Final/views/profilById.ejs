@@ -1,0 +1,33 @@
+<%- include('includes/header.ejs') %>
+
+    <body>
+        <%- include('includes/navbar.ejs') %>
+        <% if(locals.success){ %>
+            <% let user = locals.success %> 
+            <div class="container profilUser">      
+                    <div class="card col-md-10">
+                        <form action="/profil" method="post" enctype="multipart/form-data">
+                            <div class="row">                    
+                                <div class="col-md-4">
+                                    <img class="card-img-top m-1" src="../data/uploads/<%= user.avatar %> " alt="PP"></i>                        
+                                    <div class="collapse" id="collapseExample4">
+                                        <div class="modifier">
+                                            <input type="file" name="avatar"> 
+                                            <button type="submit" class="btn btn-primary btn-sm" id="change">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card-body  ">
+                                        <p class="card-text mb-2"><strong>Lastname :</strong> <%= user.lastname %></p>
+                                        <p class="card-text mb-2"><strong>Firstname :</strong><%= user.firstname %></p>
+                                        <p class="card-text m-3"><strong>Bio :</strong><%= user.bio %></p>
+                                        <p class="card-text "><strong> Email :</strong><%= user.email %> </p>
+                                    </div>
+                                </div>                          
+                            </div>
+                        </form>                       
+                    </div> 
+            </div>
+                <% } %> 
+<%- include('includes/footer.ejs')  %>                

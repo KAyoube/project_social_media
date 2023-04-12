@@ -1,0 +1,37 @@
+<%- include('includes/header.ejs') %>
+
+    <body>
+        <% if(locals.message2){ %>
+            <p style="color: rgb(128, 0, 0);"><%= locals.message2 %> </p>
+        <% } %>
+        
+        <% if(locals.message){ %>
+            <p style="color: green;"><%= locals.message %></p>
+        <% } %>
+
+        <% if(locals.myProfil.success){ %>
+            <%- include('includes/navbar.ejs') %>
+            
+        <% } %>
+
+        <% if(locals.myProfil.error){ %>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/register" style="color: white;"><strong>Register</strong> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/login" style="color: white;"> <strong>Login</strong></a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+              <img src="../data/uploads/mainPage.jpg" alt="logo" class="img-fluid" style="width: 50%;">
+        <% } %>
+
+<%- include('includes/footer.ejs')  %>
+   
